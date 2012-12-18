@@ -16,6 +16,92 @@ and open the template in the editor.
             var feathers = new Image();
             feathers.src = "/img/feathers.jpeg";
             
+            function Sling(bx, by, s1x, s1y, s2x, s2y, s3x, s3y, styleString){
+                this.bx = bx;
+                this.by = by;
+                this.s1x = s1x;
+                this.s1y = s1y;
+                this.s2x = s2x;
+                this.s2y = s2y;
+                this.s3x = s3x;
+                this.s3y = s3y;
+                this.strokeStyle = styleString;
+                this.draw = drawSling;
+                this.moveIt = moveSling;
+            }
+            function drawSling(){
+                ctx.strokeStyle = this.strokeStyle;
+                ctx.lineWidth =4;
+                ctx.beginPath();
+                ctx.moveTo(this.bx, this.by);
+                ctx.lineTo(this.s1x, this.s1y);
+                ctx.moveTo(this.bx, this.by);
+                ctx.lineTo(this.s2x, this.s2y);
+                ctx.moveTo(this.s1x, this.s1y);
+                ctx.lineTo(this.s2x, this.s2y);
+                ctx.lineTo(this.s3x, this.s3y);
+                ctx.stroke();
+            }
+            function moveSling(dx, dy){
+                his.bx += dx;
+                this.by += dy;
+                this.s1x += dx;
+                this.s1y += dy;
+                this.s2x += dx;
+                this.s2y += dy;
+                this.s3x += dx;
+                this.s3y += dy;
+            }
+            
+            var mySling = new Sling(startRockx, startRocky, startRockx + 80, 
+                                    startRocky -10, startRockx + 80, startRocky + 10, 
+                                    startRockx + 70, startRocky + 180, "rgb(120,20,10)");
+                                    
+            
+            function Ball(sx, sy, rad, styleString){
+                this.sx = sx;
+                this.sy = sy;
+                this.rad = rad;
+                this.draw =  drawBall;
+                this.moveIt = moveBall;
+                this.fillStyle = styleString;
+            }
+            function drawBall(){
+                ctx.fillStyle = this.fillStyle;
+                ctx.beginPath();
+                ctx.arc(this.sx, this.sy, this.rad, 0, Math.PI*2, true);
+                ctx.fill();
+            }
+            function moveBall(dx, dy){
+                this.sx += dx;
+                this.sy += dy;        
+            }
+            
+    var cBall = new Ball(startRockx, startRocky, ballRad, "rgb(250,0,0)");
+    
+    function myRectangle(sx, sy, sWidth, sHeigth, styleString){
+        this.sx = sx;
+        this.sy = sy;
+        this.sWidth = sWidth;
+        this.sHeigth = sHeigth;
+        this.fillStyle = styleString;
+        this.draw = drawRects;
+        this.moveIt = moveBall;
+    }
+    function drawRects(){
+        ctx.fillStyle = this.fillStyle;
+        ctx.fillRect(this.sx, this.sy, this.sWidth, this.sHeigth);
+    }
+     
+     function Picture(sx, sy, sWidth, sHeigth, imga){
+         this.sx = sx;
+         this.sy = sy;
+         this.img = imga;
+         this.sWidth = sWidth;
+         this.sHeigth = sHeigth;
+         this.draw = drawAnImage;
+         this.moveIt = moveBall;
+     }
         </script>
     </head>
     <body>
